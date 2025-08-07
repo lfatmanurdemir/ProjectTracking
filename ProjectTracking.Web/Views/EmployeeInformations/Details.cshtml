@@ -1,0 +1,96 @@
+﻿@model ProjectTracking.Core.Entities.Employee
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="card mb-4">
+            <h5 class="card-header">Profil Detayları</h5>
+
+            <hr class="my-0">
+            <div class="card-body">
+                <form id="formAccountSettings" method="POST" onsubmit="return false">
+                    <div class="row">
+                        <div class="mb-3 col-md-6">
+                            <label for="firstName" class="form-label">AD SOYAD: </label>
+
+                            @Html.DisplayFor(model => model.FullName)
+
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="lastName" class="form-label"> DEPARTMAN:</label>
+                            @Html.DisplayFor(model => model.Department)
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="lastName" class="form-label"> GÖREV:</label>
+                            @Html.DisplayFor(model => model.Position)
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="lastName" class="form-label">E-POSTA:</label>
+                            @Html.DisplayFor(model => model.Email)
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="lastName" class="form-label"> TELEFON:</label>
+                            @Html.DisplayFor(model => model.PhoneNumber)
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="lastName" class="form-label"> YETKİ:</label>
+                            @Html.DisplayFor(model => model.Role)
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="lastName" class="form-label"> TC NO:</label>
+                            @Html.DisplayFor(model => model.IDNumber)
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="lastName" class="form-label"> DOĞUM TARİHİ:</label>
+                            @Html.DisplayFor(model => model.DateOfBirth)
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="lastName" class="form-label"> ADRES:</label>
+                            @Html.DisplayFor(model => model.Address)
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="lastName" class="form-label"> İŞE GİRİŞ TARİHİ:</label>
+                            @Html.DisplayFor(model => model.JoiningDate)
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="lastName" class="form-label"> MEDENİ DURUM:</label>
+                            @Html.DisplayFor(model => model.MaritalStatus)
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="lastName" class="form-label"> GÖREV AÇIKLAMASI:</label>
+                            @Html.DisplayFor(model => model.PositionDescription)
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="lastName" class="form-label"> YAKIN BİLGİSİ:</label>
+                            @Html.DisplayFor(model => model.EmergencyContact)
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="lastName" class="form-label"> YAKIN AD SOYAD:</label>
+                            @Html.DisplayFor(model => model.EmergencyContactFullName)
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="lastName" class="form-label"> YAKIN TC:</label>
+                            @Html.DisplayFor(model => model.EmergencyContactID)
+                        </div>
+                        <div class="mb-3 col-md-6">
+                            <label for="lastName" class="form-label"> YAKIN TEL:</label>
+                            @Html.DisplayFor(model => model.EmergencyContactPhone)
+                        </div>
+
+                    </div>
+                    <div class="mt-2">
+                        <a href="/EmployeeInformations/Index/" type="submit" class="btn btn-primary me-2">Anasayfaya Dön</a>
+
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</div>

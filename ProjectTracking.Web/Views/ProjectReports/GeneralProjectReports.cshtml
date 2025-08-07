@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Genel Proje Raporları";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-success">
+            <div class="card-header"><b>TAMAMLANMIŞ PROJELER</b></div>
+            <div class="card-body">
+                <div id="completedChart" style="height: 300px;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card card-danger">
+            <div class="card-header"><b>TAMAMLANMAMIŞ PROJELER</b></div>
+            <div class="card-body">
+                <div id="incompleteChart" style="height: 300px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="~/Theme/js/reports.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+            google.charts.load('current', { packages: ['corechart'] });
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("VisualizeCompletedStatusGroups", "ProjectReports")',
+            dataType: 'json',
+            success: function (data) {
+                google.charts.setOnLoadCallback(function () {
+                    drawPieChart(data, 'completedChart', 'Tamamlanmış Projeler');
+                });
+            }
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("VisualizeIncompleteStatusGroups", "ProjectReports")',
+            dataType: 'json',
+            success: function (data) {
+                google.charts.setOnLoadCallback(function () {
+                    drawPieChart(data, 'incompleteChart', 'Tamamlanmamış Projeler');
+                });
+            }
+        });
+    });
+
+    function drawPieChart(dataArray, elementId, title) {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Öncelik');
+        data.addColumn('number', 'Adet');
+
+        dataArray.forEach(function (item) {
+            data.addRow([item.prioritType, item.numberOfPriority]);
+        });
+
+        var options = {
+            pieHole: 0.4,
+            height: 300
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById(elementId));
+        chart.draw(data, options);
+    }
+</script>
